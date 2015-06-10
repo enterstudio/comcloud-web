@@ -1,0 +1,11 @@
+div.col-xs-12
+    div.row
+        each highlight_center in highlights_center
+            div.col-xs-12
+                div(ng-include="'#{highlight_center.route}'")
+
+div.col-md-12col-xs-12
+    div.row
+        each highlight_left in highlights_left
+            div.col-xs-12
+                div(ng-include="'#{highlight_left.route}'")
