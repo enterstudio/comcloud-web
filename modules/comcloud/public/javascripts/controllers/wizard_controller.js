@@ -59,12 +59,14 @@ angular.module('IntrepidJS').controller('ComcloudWizardController',
                         break;
                 }
 
-                // $state.transitionTo(
-                //     'comcloud.wizard',
-                //     {
-                //         step: parseInt(step)
-                //     }
-                // );
+                if (step != "3") { 
+                    $state.transitionTo(
+                        'comcloud.wizard',
+                        {
+                            step: parseInt(step) + 1
+                        }
+                    );
+                }
             };
 
             $scope.finish = function() {

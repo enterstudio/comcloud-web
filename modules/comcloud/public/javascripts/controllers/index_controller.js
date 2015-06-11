@@ -16,18 +16,9 @@ angular.module('IntrepidJS').controller('ComcloudIndexController',
         '$state',
         function ($scope, $state) {
             $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-                console.log(toParams);
-                console.log(toState);
                 if (toState.name == "comcloud") {
-                    console.log("****************");
                     $state.go('comcloud.wizard', {step: 1});
-                } else {
-                    console.log(toParams);
-                    console.log(toState);
                 }
-                //     // console.log(toParams);
-                //     $state.go('comcloud.wizard', toParams);
-                // }
             });
         }
     ]
