@@ -25,16 +25,21 @@ div.row(style="margin-top: 20px;")
                         h4 ¿Qué necesitas?
                         p A continuación debes completar información relativa a tus necesidades
                 div.col-xs-12.col-md-8
+                    div.alert.alert-danger.hide.error-msg
+                        button(type="button" class="close" data-dismiss="alert" aria-hidden="true") ×
+                        span Hay
+                            strong &nbsp; errores &nbsp;
+                            | en su formulario
                     div.panel.panel-warning
                         div.panel-heading
                             h3.panel-title Tus necesidades
                         div.panel-body
                             div.form-group
                                 label ¿Qué vía de comunicación se suele utilizar en tu empresa?
-                                textarea.form-control(rows="5", ng-model="form.communication")
+                                textarea.form-control(rows="5", ng-model="formData.communication")
                             div.form-group
                                 label ¿Usáis mucha información (documentos, hojas de cálculo, etc)?
-                                textarea.form-control(rows="5", ng-model="form.info")
+                                textarea.form-control(rows="5", ng-model="formData.info")
 
             div.row
                 div.col-xs-12(style="margin-top: 20px;")

@@ -11,7 +11,17 @@ var mongoose = require('mongoose'),
 
 
 var moduleSchema = new mongoose.Schema({
-    
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Account'
+    },
+    name: String,
+    type: String,
+    employees : String,
+    tech: String,
+    communication: String,
+    info: String,
+    domain: String
 });
 
 module.exports = moduleSchema;

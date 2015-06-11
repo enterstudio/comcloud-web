@@ -17,13 +17,20 @@ div.row
                             th Nombre de la descarga
                             th Progreso
                             th Enlace de descarga
-                    tbody
+                    tbody(ng-if="show")
                         tr
-                            td Instalador para xxxx.com
+                            td Instalador para {{ domain }}
                             td
                                 a.btn.btn-primary.btn-xs.download-btn(ng-click="generateLink()") Generar enlace
                                 div.progress.hide
                                     div.progress-bar(role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;")
                             td
                                 a.download-link.hide Descargar
+
+        div.jumbotron
+            div.jumbotron-photo
+                iframe(width="100%", height="315", src="https://www.youtube.com/embed/T_2jF-_LnNg", frameborder="0", allowfullscreen)
+            div.jumbotron-contents
+                h2 ¿Cómo instalar los servicios de ComCloud?</h2>
+                p En este vídeo se muestra, paso a paso, como se instalan los servicios que provee ComCloud.
                             

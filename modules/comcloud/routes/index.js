@@ -6,8 +6,10 @@
 
 var _ = require('underscore'),
     rek = require('rekuire'),
+    settings = rek('/settings'),
     m_settings = rek('modules/comcloud/settings'),
-    wizardMiddleware = rek('modules/comcloud/middlewares/wizard');
+    wizardMiddleware = rek('modules/comcloud/middlewares/wizard'),
+    mongoMiddleware = rek('modules/comcloud/middlewares/mongo');
 
 
 var routes = {};
@@ -60,6 +62,23 @@ routes['/' + m_settings.route_prefix + '/wizard/step/:step'] =  {
                     current_step: step,
                     total: m_settings.steps
                 }
+            }
+        );
+    }
+};
+
+/**
+ * @desc  Comcloud wizard API route
+ * @return object - Wizard step data
+ */
+routes[settings.apiPrefix + '/' + m_settings.route_prefix] =  {
+    methods: ['get', 'post'],
+    middleware: [mongoMiddleware()],
+    fn: function(req, res, next) {
+        res.json(
+            {
+                'response': 'ok',
+                'doc': ((req.doc) ? req.doc : null)
             }
         );
     }

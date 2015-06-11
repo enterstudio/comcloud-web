@@ -25,16 +25,21 @@ div.row(style="margin-top: 20px;")
                         h4 ¡Bienvenido!
                         p A continuación debes completar información relativa a tu empresa
                 div.col-xs-12.col-md-8
+                    div.alert.alert-danger.hide.error-msg
+                        button(type="button" class="close" data-dismiss="alert" aria-hidden="true") ×
+                        span Hay
+                            strong &nbsp; errores &nbsp;
+                            | en su formulario
                     div.panel.panel-primary
                         div.panel-heading
                             h3.panel-title Tu empresa
                         div.panel-body
                             div.form-group
                                 label Indícanos el nombre de tu empresa
-                                input(type="text" class="form-control" placeholder="Empresa S.L.", ng-model="form.name")
+                                input(type="text" class="form-control" placeholder="Empresa S.L.", ng-model="formData.name")
                             div.form-group
                                 label ¿Qué tipo de empresa tienes?
-                                select.form-control(ng-model="form.type")
+                                select.form-control(ng-model="formData.type")
                                     option(value="BANKING" selected="") Actividades bancarias
                                     option(value="GOVERNMENT_ADMINISTRATION") Administración gubernamental
                                     option(value="AIRLINES_AVIATION") Aeronáutica/Aviación
@@ -193,13 +198,13 @@ div.row(style="margin-top: 20px;")
                         div.panel-body
                             div.form-group
                                 label ¿Cuántos empleados tiene tu empresa?
-                                select.form-control(ng-model="form.employees")
+                                select.form-control(ng-model="formData.employees")
                                     option(value="small") Entre 1 y 5 empleados
                                     option(value="medium") Entre 5 y 20 empleados
                                     option(value="big") Más de 20 empleados 
                             div.form-group
                                 label ¿Hay algún empleado con conocimientos técnicos?
-                                select.form-control(ng-model="form.tech")
+                                select.form-control(ng-model="formData.tech")
                                     option(value="1") Sí
                                     option(value="0") No
 

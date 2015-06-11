@@ -17,7 +17,7 @@ div.row
 
 
 div.row(style="margin-top: 20px;")
-    form(ng-submit="finish('#{data.current_step}')")
+    form(ng-submit="next('#{data.current_step}')")
         div.col-xs-12
             div.row
                 div.col-xs-12.col-md-4
@@ -25,13 +25,18 @@ div.row(style="margin-top: 20px;")
                         h4 La identidad es importante
                         p A continuación debes indicarnos datos relativos sobre la identidad de la empresa
                 div.col-xs-12.col-md-8
+                    div.alert.alert-danger.hide.error-msg
+                        button(type="button" class="close" data-dismiss="alert" aria-hidden="true") ×
+                        span Hay
+                            strong &nbsp; errores &nbsp;
+                            | en su formulario
                     div.panel.panel-danger
                         div.panel-heading
                             h3.panel-title Tu identidad como empresa
                         div.panel-body
                             div.form-group
                                 label Indícanos que nombre de dominio utilizáis en internet
-                                input(type="text" class="form-control" placeholder="empresa.com", ng-model="form.domain")
+                                input(type="url" class="form-control" placeholder="empresa.com", ng-model="formData.domain")
 
             div.row
                 div.col-xs-12(style="margin-top: 20px;")

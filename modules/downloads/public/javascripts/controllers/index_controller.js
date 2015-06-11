@@ -15,8 +15,12 @@ angular.module('IntrepidJS').controller('DownloadsIndexController',
         '$scope',
         '$state',
         '$interval',
-        function ($scope, $state, $interval) {
+        'restService',
+        function ($scope, $state, $interval, restService) {
             var interval = null;
+            $scope.show = false;
+            $scope.domain = null;
+            getData();
 
             $scope.generateLink = function() {
                 var count = 0;
@@ -36,6 +40,26 @@ angular.module('IntrepidJS').controller('DownloadsIndexController',
                 $interval.cancel(interval);
                 angular.element(".download-link").removeClass('hide');
             });
+
+
+
+            function getData() {
+                restService.get(
+                    {},
+                    apiPrefix + '/comcloud',
+                    function(data, status, headers, config) {
+                        if (data.response == 'ok') {
+                            if (data.doc) {
+                                $scope.show = true;
+                                $scope.domain = data.doc.domain;
+                            }
+                        }
+                    },
+                    function(data, status, headers, config) {
+                        
+                    }
+                );
+            }
             
         }
     ]
