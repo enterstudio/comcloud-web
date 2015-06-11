@@ -1,0 +1,208 @@
+div.row
+    div.col-xs-12
+        ul.nav.nav-pills.nav-justified
+            each step in data.total
+                if step.step == data.current_step
+                    li.active
+                        a(ui-sref="comcloud.wizard({ step: #{step.step} })")
+                            span.badge= step.step
+                            &nbsp;
+                            span= step.title
+                else
+                    li
+                        a(ui-sref="comcloud.wizard({ step: #{step.step} })")
+                            span.badge= step.step
+                            &nbsp;
+                            span= step.title
+
+
+div.row(style="margin-top: 20px;")
+    form(ng-submit="next('#{data.current_step}')")
+        div.col-xs-12
+            div.row
+                div.col-xs-12.col-md-4
+                    div.alert.alert-info
+                        h4 ¡Bienvenido!
+                        p A continuación debes completar información relativa a tu empresa
+                div.col-xs-12.col-md-8
+                    div.panel.panel-primary
+                        div.panel-heading
+                            h3.panel-title Tu empresa
+                        div.panel-body
+                            div.form-group
+                                label Indícanos el nombre de tu empresa
+                                input(type="text" class="form-control" placeholder="Empresa S.L.", ng-model="form.name")
+                            div.form-group
+                                label ¿Qué tipo de empresa tienes?
+                                select.form-control(ng-model="form.type")
+                                    option(value="BANKING" selected="") Actividades bancarias
+                                    option(value="GOVERNMENT_ADMINISTRATION") Administración gubernamental
+                                    option(value="AIRLINES_AVIATION") Aeronáutica/Aviación
+                                    option(value="FARMING") Agricultura
+                                    option(value="FOOD_AND_BEVERAGES") Alimentación y bebidas
+                                    option(value="WAREHOUSING") Almacenamiento
+                                    option(value="ANIMATION") Animación
+                                    option(value="GAMBLING_AND_CASINOS") Apuestas y casinos
+                                    option(value="ARCHITECTURE_AND_PLANNING") Arquitectura y planificación
+                                    option(value="ARTS_AND_CRAFTS") Artesanía
+                                    option(value="PERFORMING_ARTS") Artes interpretativas
+                                    option(value="CONSUMER_GOODS") Artículos de consumo
+                                    option(value="LUXURY_GOODS_AND_JEWELRY") Artículos de lujo y joyas
+                                    option(value="SPORTING_GOODS") Artículos deportivos
+                                    option(value="INTERNATIONAL_AFFAIRS") Asuntos internacionales
+                                    option(value="MENTAL_HEALTH_CARE") Atención a la salud mental
+                                    option(value="HOSPITAL_AND_HEALTH_CARE") Atención sanitaria y hospitalaria
+                                    option(value="INDUSTRIAL_AUTOMATION") Automación industrial
+                                    option(value="INVESTMENT_BANKING_AND_VENTURE") Banca de inversiones
+                                    option(value="FINE_ART") Bellas Artes
+                                    option(value="LIBRARIES") Bibliotecas
+                                    option(value="REAL_ESTATE") Bienes inmobiliarios
+                                    option(value="COMMERCIAL_REAL_ESTATE") Bienes inmuebles comerciales
+                                    option(value="BIOTECHNOLOGY") Biotecnología
+                                    option(value="VENTURE_CAPITAL") Capital de riesgo
+                                    option(value="CONSTRUCTION") Construcción
+                                    option(value="SHIPBUILDING") Construcción naval
+                                    option(value="MANAGEMENT_CONSULTING") Consultoría de estrategia y operaciones
+                                    option(value="ACCOUNTING") Contabilidad
+                                    option(value="COSMETICS") Cosmética
+                                    option(value="GLASS_CERAMICS_AND_CONCRETE") Cristal, cerámica y hormigón
+                                    option(value="LAW_ENFORCEMENT") Cumplimiento de la ley
+                                    option(value="DEFENSE_AND_SPACE") Departamento de defensa y del espacio exterior
+                                    option(value="SPORTS") Deportes
+                                    option(value="LAW_PRACTICE") Derecho
+                                    option(value="PROGRAM_DEVELOPMENT") Desarrollo de programación
+                                    option(value="INTERNATIONAL_TRADE_AND_DEVELOPMENT") Desarrollo y comercio internacional
+                                    option(value="DESIGN") Diseño
+                                    option(value="GRAPHIC_DESIGN") Diseño gráfico
+                                    option(value="MEDICAL_DEVICE") Dispositivos médicos
+                                    option(value="STAFFING_AND_RECRUITING") Dotación y selección de personal
+                                    option(value="ONLINE_PUBLISHING") Edición en línea
+                                    option(value="PRIMARY_SECONDARY") Educación primaria/secundaria
+                                    option(value="MILITARY") Ejército
+                                    option(value="E_LEARNING") E-learning
+                                    option(value="CONSUMER_ELECTRONICS") Electrónica de consumo
+                                    option(value="PACKAGING_AND_CONTAINERS") Embalaje y contenedores
+                                    option(value="RENEWABLES_AND_ENVIRONMENT") Energía renovable y medio ambiente
+                                    option(value="HIGHER_EDUCATION") Enseñanza superior
+                                    option(value="ENTERTAINMENT") Entretenimiento
+                                    option(value="PACKAGE_AND_FREIGHT_DELIVERY") Envío de paquetes y carga
+                                    option(value="COMPUTER_HARDWARE") Equipo informático
+                                    option(value="PHILANTHROPY") Filantropía
+                                    option(value="PROFESSIONAL_TRAINING") Formación profesional
+                                    option(value="PHOTOGRAPHY") Fotografía
+                                    option(value="THINK_TANKS") Gabinetes estratégicos
+                                    option(value="RANCHING") Ganadería
+                                    option(value="INVESTMENT_MANAGEMENT") Gestión de inversiones
+                                    option(value="NON_PROFIT_ORGANIZATION_MANAGEMENT") Gestión de organizaciones sin ánimo de lucro
+                                    option(value="EDUCATION_MANAGEMENT") Gestión educativa
+                                    option(value="HOSPITALITY") Hostelería
+                                    option(value="IMPORT_AND_EXPORT") Importar y exportar
+                                    option(value="PRINTING") Imprenta
+                                    option(value="AVIATION_AND_AEROSPACE") Industria aeroespacial y aviación
+                                    option(value="PHARMACEUTICALS") Industria farmacéutica
+                                    option(value="APPAREL_AND_FASHION") Industria textil y moda
+                                    option(value="CIVIL_ENGINEERING") Ingeniería civil
+                                    option(value="MECHANICAL_OR_INDUSTRIAL_ENGINEERING") Ingeniería industrial o mecánica
+                                    option(value="RECREATIONAL_FACILITIES_AND_SERVICES") Instalaciones y servicios de recreo
+                                    option(value="RELIGIOUS_INSTITUTIONS") Instituciones religiosas
+                                    option(value="COMPUTER_NETWORKING") Interconexión en red
+                                    option(value="INTERNET") Internet
+                                    option(value="RESEARCH") Investigación
+                                    option(value="MARKET_RESEARCH") Investigación de mercado
+                                    option(value="JUDICIARY") Judicial
+                                    option(value="DAIRY") Lácteos
+                                    option(value="LOGISTICS_AND_SUPPLY_CHAIN") Logística y cadena de suministro
+                                    option(value="ELECTRICAL_AND_ELECTRONIC_MANUFACTURING") Manufactura eléctrica y electrónica
+                                    option(value="RAILROAD_MANUFACTURE") Manufactura ferroviaria
+                                    option(value="MACHINERY") Maquinaria
+                                    option(value="MARKETING_AND_ADVERTISING") Marketing y publicidad
+                                    option(value="BUILDING_MATERIALS") Materiales de construcción
+                                    option(value="BUSINESS_SUPPLIES_AND_EQUIPMENT") Material y equipo de negocios
+                                    option(value="ALTERNATIVE_MEDICINE") Medicina alternativa
+                                    option(value="BROADCAST_MEDIA") Medios de difusión
+                                    option(value="CAPITAL_MARKETS") Mercados capitales
+                                    option(value="MINING_AND_METALS") Minería y metalurgia
+                                    option(value="FURNITURE") Mobiliario
+                                    option(value="MUSEUMS_AND_INSTITUTIONS") Museos e instituciones
+                                    option(value="MUSIC") Música
+                                    option(value="NANOTECHNOLOGY") Nanotecnología
+                                    option(value="MARITIME") Naval
+                                    option(value="LEISURE_AND_TRAVEL") Ocio y viajes
+                                    option(value="EXECUTIVE_OFFICE") Oficina ejecutiva
+                                    option(value="LEGISLATIVE_OFFICE") Oficina legislativa
+                                    option(value="CIVIC_AND_SOCIAL_ORGANIZATION") Organización cívica y social
+                                    option(value="POLITICAL_ORGANIZATION") Organización política
+                                    option(value="MOTION_PICTURES_AND_FILM") Películas y cine
+                                    option(value="NEWSPAPERS") Periódicos
+                                    option(value="OIL_AND_ENERGY") Petróleo y energía
+                                    option(value="FISHERY") Piscicultura
+                                    option(value="PLASTICS") Plásticos
+                                    option(value="PUBLIC_POLICY") Política pública
+                                    option(value="FOOD_PRODUCTION") Producción alimentaria
+                                    option(value="MEDIA_PRODUCTION") Producción multimedia
+                                    option(value="PAPER_AND_FOREST_PRODUCTS") Productos de papel y forestales
+                                    option(value="CHEMICALS") Productos químicos
+                                    option(value="MEDICAL_PRACTICE") Profesiones médicas
+                                    option(value="COMPUTER_SOFTWARE") Programas informáticos
+                                    option(value="PUBLIC_SAFETY") Protección civil
+                                    option(value="PUBLISHING") Publicaciones
+                                    option(value="FUNDRAISING") Recaudación de fondos
+                                    option(value="HUMAN_RESOURCES") Recursos humanos
+                                    option(value="WRITING_AND_EDITING") Redacción y revisión
+                                    option(value="GOVERNMENT_RELATIONS") Relaciones gubernamentales
+                                    option(value="PUBLIC_RELATIONS") Relaciones públicas
+                                    option(value="ALTERNATIVE_DISPUTE_RESOLUTION") Resolución de conflicto por terceras partes
+                                    option(value="RESTAURANTS") Restaurantes
+                                    option(value="HEALTH_WELLNESS_AND_FITNESS") Sanidad, bienestar y buena condición física
+                                    option(value="AUTOMOTIVE") Sector automovilístico
+                                    option(value="TEXTILES") Sector textil
+                                    option(value="COMPUTER_AND_NETWORK_SECURITY") Seguridad del ordenador y de las redes
+                                    option(value="SECURITY_AND_INVESTIGATIONS") Seguridad e investigaciones
+                                    option(value="INSURANCE") Seguros
+                                    option(value="SEMICONDUCTORS") Semiconductores
+                                    option(value="CONSUMER_SERVICES") Servicio al consumidor
+                                    option(value="INFORMATION_SERVICES") Servicio de información
+                                    option(value="EVENTS_SERVICES") Servicios de eventos
+                                    option(value="FINANCIAL_SERVICES") Servicios financieros
+                                    option(value="FACILITIES_SERVICES") Servicios infraestructurales
+                                    option(value="LEGAL_SERVICES") Servicios jurídicos
+                                    option(value="ENVIRONMENTAL_SERVICES") Servicios medioambientales
+                                    option(value="INDIVIDUAL_AND_FAMILY_SERVICES") Servicios para el individuo y la familia
+                                    option(value="UTILITIES") Servicios públicos
+                                    option(value="INFORMATION_TECHNOLOGY_AND_SERVICES") Servicios y tecnología de la información
+                                    option(value="OUTSOURCING_OFFSHORING") Subcontrataciones/Offshoring
+                                    option(value="SUPERMARKETS") Supermercados
+                                    option(value="TOBACCO") Tabaco
+                                    option(value="WIRELESS") Tecnología inalámbrica
+                                    option(value="TELECOMMUNICATIONS") Telecomunicaciones
+                                    option(value="TRANSLATION_AND_LOCALIZATION") Traducción y localización
+                                    option(value="TRANSPORTATION_TRUCKING_AND_RAILROAD") Transporte por carretera o ferrocarril
+                                    option(value="WHOLESALE") Venta al por mayoroption(value="RETAIL") Venta al por menor
+                                    option(value="VETERINARY") Veterinaria
+                                    option(value="COMPUTER_GAMES") Videojuegos
+                                    option(value="WINE_AND_SPIRITS") Vino y licor
+            div.row
+                div.col-xs-12.col-md-4
+                    div.alert.alert-success
+                        h4 ¿Nos dices algo sobre tus empleados?
+                        p A continuación debes indicarnos información relativa a tus empleados
+                div.col-xs-12.col-md-8
+                    div.panel.panel-success
+                        div.panel-heading
+                            h3.panel-title Tus empleados
+                        div.panel-body
+                            div.form-group
+                                label ¿Cuántos empleados tiene tu empresa?
+                                select.form-control(ng-model="form.employees")
+                                    option(value="small") Entre 1 y 5 empleados
+                                    option(value="medium") Entre 5 y 20 empleados
+                                    option(value="big") Más de 20 empleados 
+                            div.form-group
+                                label ¿Hay algún empleado con conocimientos técnicos?
+                                select.form-control(ng-model="form.tech")
+                                    option(value="1") Sí
+                                    option(value="0") No
+
+            div.row
+                div.col-xs-12(style="margin-top: 20px;")
+                    button.pull-right(type="submit", class="btn") Siguiente

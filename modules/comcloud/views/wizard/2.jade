@@ -1,0 +1,41 @@
+div.row
+    div.col-xs-12
+        ul.nav.nav-pills.nav-justified
+            each step in data.total
+                if step.step == data.current_step
+                    li.active
+                        a(ui-sref="comcloud.wizard({ step: #{step.step} })")
+                            span.badge= step.step
+                            &nbsp;
+                            span= step.title
+                else
+                    li
+                        a(ui-sref="comcloud.wizard({ step: #{step.step} })")
+                            span.badge= step.step
+                            &nbsp;
+                            span= step.title
+
+
+div.row(style="margin-top: 20px;")
+    form(ng-submit="next('#{data.current_step}')")
+        div.col-xs-12
+            div.row
+                div.col-xs-12.col-md-4
+                    div.alert.alert-warning
+                        h4 ¿Qué necesitas?
+                        p A continuación debes completar información relativa a tus necesidades
+                div.col-xs-12.col-md-8
+                    div.panel.panel-warning
+                        div.panel-heading
+                            h3.panel-title Tus necesidades
+                        div.panel-body
+                            div.form-group
+                                label ¿Qué vía de comunicación se suele utilizar en tu empresa?
+                                textarea.form-control(rows="5", ng-model="form.communication")
+                            div.form-group
+                                label ¿Usáis mucha información (documentos, hojas de cálculo, etc)?
+                                textarea.form-control(rows="5", ng-model="form.info")
+
+            div.row
+                div.col-xs-12(style="margin-top: 20px;")
+                    button.pull-right(type="submit", class="btn") Siguiente

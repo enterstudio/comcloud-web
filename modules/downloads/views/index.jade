@@ -1,0 +1,29 @@
+div.row
+    div.col-xs-12.col-md-4
+        div.alert.alert-info
+            h4 Zona de descargas
+            p En esta sección podrás realizar descargas de los paquetes de servicios creados con en la plataforma ComCloud
+            br
+            div.alert.alert-warning
+                h4 Aviso
+                p Los paquetes de servicios se generan en tiempo real, por favor, se paciente
+    div.col-xs-12.col-md-8
+        div.panel.panel-default
+            div.panel-heading Descargas disponibles
+            div.panel-body
+                table.table
+                    thead
+                        tr
+                            th Nombre de la descarga
+                            th Progreso
+                            th Enlace de descarga
+                    tbody
+                        tr
+                            td Instalador para xxxx.com
+                            td
+                                a.btn.btn-primary.btn-xs.download-btn(ng-click="generateLink()") Generar enlace
+                                div.progress.hide
+                                    div.progress-bar(role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%;")
+                            td
+                                a.download-link.hide Descargar
+                            

@@ -1,0 +1,12 @@
+div.highlight-comcloud
+    h1.text-center Comienza a utilizar ComCloud ahora
+    p.lead.text-center Es fácil e intuitivo
+    div.row
+        div.col-xs-12
+            div(style="text-align: center;")
+                if user
+                    a.btn.btn-primary(style="border-bottom: 8px solid #187FA5; padding: 0px 12px 16px 12px; border-radius: 10px;", ui-sref="comcloud.wizard({step: 1})") 
+                        h2 Comenzar
+                else
+                    a.btn.btn-primary(style="border-bottom: 8px solid #187FA5; padding: 0px 12px 16px 12px; border-radius: 10px;", ui-sref="signup") 
+                        h2 Regístrate
