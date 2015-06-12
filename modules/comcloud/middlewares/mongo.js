@@ -28,7 +28,7 @@ function mongoWrapper() {
             var data = req.body;
             data.author = req.user._id;
 
-            cc_model.findOneAndUpdate({'author': req.user._id}, data, function(err, doc) {
+            cc_model.findOneAndUpdate({'author': req.user._id}, _.pick(data, '_id'), function(err, doc) {
                 if (!doc) {
                     cc_model.create(data, function(error, obj) {
                         if (error) {
