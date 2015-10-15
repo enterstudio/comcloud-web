@@ -87,12 +87,7 @@ if (mainSettings.sessionDriver=="redis") {
   app.use(
       session(
           {
-              store: new redisStore(
-                  {
-                      host: 'localhost',
-                      port: 6379
-                  }
-              ),
+              store: new redisStore(),
               secret: mainSettings.secret
           }
       )
@@ -221,6 +216,6 @@ server.listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
-var redisClient = redis.createClient();
+var redisClient = redis.createClient(6379, 'localhost');
 // Initializing SocketIO
 var socketio = rek('utils/socketio')(server, redisStore, redisClient);
