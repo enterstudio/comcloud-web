@@ -37,12 +37,7 @@ var passportSocketIo = require("passport.socketio"),
 module.exports = function(server, redisStore, redisClient) {
     var io = require('socket.io').listen(server);
 
-    var sessionStore = new redisStore(
-        {
-            host: 'localhost',
-            port: 6379
-        }
-    );
+    var sessionStore = new redisStore();
     io.set('log level', 1);//Reduce log level
     // set authorization for socket.io
     io.set('authorization', passportSocketIo.authorize({
