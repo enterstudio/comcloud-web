@@ -64,7 +64,7 @@ function IndexController(socketIO, restService, $scope, $http) {
             $scope.entries = data;
         },
         function(data, status, headers, config) {
-            console.log(data);
+            //console.log(data);
         }
     );
 
@@ -74,7 +74,7 @@ function IndexController(socketIO, restService, $scope, $http) {
                 $scope.entries = data;
             },
             function(data, status, headers, config) {
-                console.log(data);
+                //console.log(data);
             }
         );
     };
@@ -89,7 +89,7 @@ function IndexController(socketIO, restService, $scope, $http) {
                 $scope.entries = data;
             },
             function(data, status, headers, config) {
-                console.log(data);
+                //console.log(data);
             }
         );
     });

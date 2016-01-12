@@ -21,7 +21,8 @@ var moduleSchema = new mongoose.Schema({
     tech: String,
     communication: String,
     info: String,
-    domain: String
+    domain: String,
+    logo: String
 });
 
 module.exports = moduleSchema;

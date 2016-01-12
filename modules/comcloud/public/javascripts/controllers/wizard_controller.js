@@ -16,11 +16,14 @@ angular.module('IntrepidJS').controller('ComcloudWizardController',
         '$state',
         '$stateParams',
         'restService',
-        function ($scope, $state, $stateParams, restService) {
+        '$upload',
+        function ($scope, $state, $stateParams, restService, $upload) {
             $scope.formData = {};
             $scope.stepData = {};
 
             getData();
+
+            $('input[type=file]').bootstrapFileInput();
 
             $scope.next = function(step) {
                 switch (step) {
@@ -47,6 +50,7 @@ angular.module('IntrepidJS').controller('ComcloudWizardController',
                     case "3":
                         if (Object.keys($scope.formData).length >= 10 && $.trim($scope.formData.domain) != "") {
                             saveOrUpdateData();
+
                             if (!angular.element('.error-msg').hasClass('hide')) {
                                 angular.element('.error-msg').addClass('hide');
                             }
@@ -59,7 +63,7 @@ angular.module('IntrepidJS').controller('ComcloudWizardController',
                         break;
                 }
 
-                if (step != "3") { 
+                if (step != "3") {
                     $state.transitionTo(
                         'comcloud.wizard',
                         {
@@ -80,12 +84,13 @@ angular.module('IntrepidJS').controller('ComcloudWizardController',
                     $scope.formData,
                     apiPrefix + '/comcloud',
                     function(data, status, headers, config) {
+
                         if (data.response == 'ok') {
-                        
+
                         }
                     },
                     function(data, status, headers, config) {
-                        
+
                     }
                 );
             }
@@ -101,10 +106,26 @@ angular.module('IntrepidJS').controller('ComcloudWizardController',
                         }
                     },
                     function(data, status, headers, config) {
-                        
+
                     }
                 );
             }
+
+            $scope.onFileSelect = function($files) {
+                $scope.selectedFile = $files[0];
+                $scope.hasFile = true;
+                updateImage();
+            };
+
+            var updateImage = function(){
+                $scope.upload = $upload.upload({
+                    url: apiPrefix + '/comcloud',
+                    file: $scope.selectedFile
+                }).success(function(data, status, headers, config) {
+                    console.log(data.doc);
+                    $scope.formData = data.doc;
+                });
+            };
         }
     ]
 );

@@ -5,7 +5,7 @@ angular.module('IntrepidJS').directive('ngDynAttr', function($compile) {
             ngDynAttr: '='
         },
         compile: function(el, scope) {
-            console.log(scope.ngDynAttr);
+            //console.log(scope.ngDynAttr);
             el.attr(scope.ngDynAttr, scope.ngDynAttr);
         }
         // link: function(scope, elem, attrs) {
