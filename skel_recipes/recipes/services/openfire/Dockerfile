@@ -15,5 +15,6 @@ WORKDIR /tmp
 
 ADD data/start.sh /tmp/start.sh
 ADD data/casserver.cer /tmp/casserver.cer
+ADD data/websockets.war /opt/openfire/plugins/websockets.war
 
 CMD /bin/bash /tmp/start.sh -d
