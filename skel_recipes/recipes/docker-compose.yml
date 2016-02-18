@@ -8,14 +8,13 @@ packetfence:
     # ports:
     # do not exposes ports because uses the native network stack. Configuration portal is on: https://ip:1443
 
-## Cas
 casserver:
-  build: services/casserver
+  extends:
+    file: ./services/cas/compose.yml
+    service: cas
   ports:
     - "8080:8080"
     - "8443:8443"
-  hostname: casserver
-  domainname: "domain"
 
 ## CorpPortal
 corpportal-web:
@@ -33,9 +32,10 @@ corpportal-web:
     - APP_ZIMBRA=true
     - APP_REDMINE=true
     - APP_OPENFIRE=true
-    - MASTER_FQDN="domain"
+    - MASTER_FQDN=comcloud-domain
+
   volumes:
-    - ./data/company-logo.png:/usr/src/app/client/assets/images/company-logo.png:ro
+    - ./data/company-logo.png:/usr/src/app/client/assets/images/logo.png:ro
 
 corpportal-db:
   extends:
@@ -52,7 +52,7 @@ owncloud:
   ports:
     - "8081:80"
   hostname: owncloud
-  domainname: "domain"
+  domainname: comcloud-domain
 
 # Zimbra
 zimbra:
@@ -60,12 +60,12 @@ zimbra:
   links: 
     - casserver
   ports:
-    - "443:443"
+    - "8082:443"
     - "7071:7071"
   environment:
     - PASSWORD=docker
   hostname: zimbra
-  domainname: "domain"
+  domainname: comcloud-domain
 
 # Redmine
 redmine:
@@ -73,9 +73,9 @@ redmine:
   links: 
     - casserver
   ports:
-    - "3000:3000"
+    - "8083:3000"
   hostname: redmine
-  domainname: "domain"
+  domainname: comcloud-domain
 
 # Jabber
 openfire:
@@ -87,10 +87,10 @@ openfire:
     - "9091:9091"
     - "5222:5222"
     - "5223:5223"
-    - "7070:7070"
+    - "8084:7070"
     - "7777:7777"
     - "7443:7443"
     - "5229:5229"
     - "5269:5269"
   hostname: openfire
-  domainname: "domain"
+  domainname: comcloud-domain
