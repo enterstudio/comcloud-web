@@ -1,0 +1,5 @@
+cas:
+  image: comcloud/cas
+  container_name: cas
+  restart: always
+  hostname: cas
