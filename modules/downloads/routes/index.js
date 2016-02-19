@@ -6,7 +6,8 @@
 
 var _ = require('underscore'),
     rek = require('rekuire'),
-    m_settings = rek('modules/downloads/settings');
+    m_settings = rek('modules/downloads/settings'),
+    recipeMiddleware = rek('modules/downloads/middlewares/recipe');
 
 
 var routes = {};
@@ -34,6 +35,23 @@ routes['/' + m_settings.route_prefix + '/partials/:name'] =  {
     fn: function(req, res, next) {
         var name = req.params.name;
         res.render(m_settings.viewsPath + '/partials/' + name);
+    }
+};
+
+/**
+ * @desc  Generate recipe
+ * @return object -
+ */
+routes['/' + m_settings.route_prefix + '/recipe'] =  {
+    methods: ['post'],
+    middleware: [recipeMiddleware()],
+    fn: function(req, res) {
+        res.json(
+            {
+                'response': req.response,
+                'data': req.object
+            }
+        );
     }
 };
 

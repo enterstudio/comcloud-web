@@ -21,15 +21,29 @@ angular.module('IntrepidJS').controller('DownloadsIndexController',
             $scope.show = false;
             $scope.domain = null;
             getData();
+            
 
             $scope.generateLink = function() {
+
+                restService.post(
+                    {
+                        author: $scope.author
+                    },
+                    '/downloads/recipe',
+                    function(data, status, headers, config) {
+                        if (data.response == 'ok') {
+                            // $scope.token = data.requestToken;
+                        }
+                    }
+                );
+
                 var count = 0;
                 angular.element(".download-btn").addClass('hide');
                 angular.element(".progress").removeClass('hide');
                 interval = $interval(function() {
                     angular.element(".progress-bar").css({"width": count + "%"});
                     count += 1;
-                    console.log(count);
+                    // console.log(count);
                     if (count > 100) {
                         $scope.$emit('destroyInterval');
                     }
@@ -39,9 +53,8 @@ angular.module('IntrepidJS').controller('DownloadsIndexController',
             $scope.$on('destroyInterval', function() {
                 $interval.cancel(interval);
                 angular.element(".download-link").removeClass('hide');
+                $scope.download_url = "/files/" + $scope.author + "/installer";
             });
-
-
 
             function getData() {
                 restService.get(
@@ -52,15 +65,16 @@ angular.module('IntrepidJS').controller('DownloadsIndexController',
                             if (data.doc) {
                                 $scope.show = true;
                                 $scope.domain = data.doc.domain;
+                                $scope.author = data.doc.author;
                             }
                         }
                     },
                     function(data, status, headers, config) {
-                        
+
                     }
                 );
             }
-            
+
         }
     ]
 );

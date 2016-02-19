@@ -1,0 +1,136 @@
+#!/bin/bash
+#
+# comcloud deployer installer
+
+TOKEN={token}
+APP_DIR=/usr/src/app
+
+progress_bar() {
+  let _progress=(${1}*100/${2}*100)/100
+  let _done=(${_progress}*4)/10
+  let _left=40-$_done
+
+  _done=$(printf "%${_done}s")
+  _left=$(printf "%${_left}s")
+
+  printf "\rProgress : [${_done// /#}${_left// /-}] ${_progress}%% "
+}
+
+install_software_requirements() {
+
+    case $1 in
+      debian )
+        launch apt-get -y update &>/dev/null
+        launch apt-get -y install git ssh openssl libncurses5-dev libffi-dev \
+          python-dev libssl-dev build-essential nodejs python-setuptools \
+          python-pip mongodb-server redis-server npm &>/dev/null
+        ;;
+      redhat )
+        launch yum install openssh git openssl-devel ncurses-devel libffi-devel \
+          python-devel openssl-devel make automake gcc gcc-c++ kernel-devel \
+          nodejs python-setuptools python-pip mongodb-server redis npm &>/dev/null
+        ;;
+    esac
+
+    npm install -g bower &>/dev/null
+
+    if [[ ! -f /usr/bin/node ]]; then
+        ln -s /usr/bin/nodejs /usr/bin/node &>/dev/null
+    fi 
+
+    easy_install pip &>/dev/null
+    easy_install virtualenv &>/dev/null
+}
+
+
+launch() {
+    "$@"
+    local status=$?
+    if [ $status -ne 0 ]; then
+        echo "error with $@" >&2
+        exit 1
+    fi
+    return $status
+}
+
+progress_bar 1 100
+
+case `uname` in
+  Linux )
+     LINUX=1
+     which yum > /dev/null 2> /dev/null && { YUM=1; }
+     which dnf > /dev/null 2> /dev/null && { DNF=1; }
+     which apt-get > /dev/null 2> /dev/null && { APT=1; }
+     ;;
+  Darwin )
+     DARWIN=1
+     >&2 echo "Darwin not supported"
+     exit 1
+     ;;
+  * )
+     # Handle AmgiaOS, CPM, and modified cable modems here.
+     ;;
+esac
+
+if [[ $YUM = 1 ]]; then
+    #echo 'Using YUM installer'
+    install_software_requirements "redhat"
+
+elif [[ $DNF = 1 ]]; then
+    #echo 'Using DNF installer'
+
+    >&2 echo 'DNF installer not implemented yet'
+    exit 1
+
+elif [[ $APT = 1 ]]; then
+    #echo 'Using APT-GET installer'
+
+    install_software_requirements "debian"
+fi
+
+
+if [[ ! -d $APP_DIR ]]; then
+  mkdir /usr/src/app
+fi
+
+progress_bar 40 100
+
+export PYTHONPATH=/usr/src/app
+
+if [[ ! -d $APP_DIR/cc_env ]]; then
+  virtualenv /usr/src/app/cc_env
+fi
+
+source /usr/src/app/cc_env/bin/activate
+
+# if [[ ! -d $APP_DIR/comcloud ]]; then
+#   virtualenv /usr/src/app/cc_env
+# fi
+
+cd $APP_DIR
+
+progress_bar 50 100
+
+wget http://comcloud-packager:5000/downloads/$TOKEN &> /dev/null
+tar -xvf $TOKEN &>/dev/null
+
+progress_bar 70 100
+
+cd $APP_DIR/comcloud
+
+launch pip install -r requirements.txt &> /dev/null  && \
+launch pip install -r ./installator/requirements.txt &> /dev/null && \
+launch pip install -r ./test/requirements.txt &> /dev/null
+
+progress_bar 90 100
+
+
+cd $APP_DIR/comcloud/installator/static/vendor
+launch bower install --allow-root &> /dev/null
+
+cp $APP_DIR/comcloud/bin/comcloud /usr/local/bin/
+chmod +x /usr/local/bin/comcloud
+
+progress_bar 100 100
+echo 'Installation successful.'
+exit 1
