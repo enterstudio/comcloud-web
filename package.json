@@ -29,7 +29,7 @@
     "mongoose-unique-validator": "~0.3.0",
     "morgan": "~1.0.1",
     "mubsub": "~1.0.4",
-    "ncp": "*",
+    "ncp": "2.0.0",
     "node-uuid": "~1.4.1",
     "nodemailer": "~1.3.0",
     "oauth2-provider": "~1.3.0",
@@ -52,7 +52,14 @@
     "superagent": "~0.18.2",
     "underscore": "~1.6.0",
     "underscore.string": "~2.3.3",
-    "validator": "~3.16.1"
+    "validator": "~3.16.1",
+    "tar-fs": "1.9.0",
+    "fs": "0.0.2",
+    "hat": "0.0.3",
+    "js-yaml": "3.5.2",
+    "form-data": "1.0.0-rc3",
+    "fs-extra": "~0.26.5",
+    "machine_learning": "0.0.8"
   },
   "devDependencies": {
     "gulp": "~3.8.10",
