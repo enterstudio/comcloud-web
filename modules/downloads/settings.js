@@ -38,3 +38,6 @@ exports.highlights = true;
 
 // Module actions
 exports.actions = [];
+
+// Comcloud Pckager
+exports.comcloudPAckagerUrl = "localhost";
