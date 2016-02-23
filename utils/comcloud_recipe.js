@@ -52,6 +52,7 @@ Recipe.prototype.compose = function(apps, host, token, cb){
         setConfig(composeFile, "comcloud-domain", domain);
         setConfig(path + '/installer', "{token}", token);
         setConfig(path + '/recipes/services/owncloud/data/config.php', 'TRUSTED_DOMAIN_HERE', host);
+        setConfig(path + '/recipes/services/sparkweb/data/htdocs/index.html', 'TRUSTED_DOMAIN_HERE', host);
 
         fs.createReadStream(path + '/logo.png').pipe(fs.createWriteStream(path + '/recipes/data/company-logo.png'));
         return cb(path + "/recipes");

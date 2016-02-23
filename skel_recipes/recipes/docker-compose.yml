@@ -87,10 +87,19 @@ openfire:
     - "9091:9091"
     - "5222:5222"
     - "5223:5223"
-    - "8084:7070"
+    - "7072:7070"
     - "7777:7777"
     - "7443:7443"
     - "5229:5229"
     - "5269:5269"
   hostname: openfire
+  domainname: comcloud-domain
+
+sparkweb:
+  build: services/sparkweb
+  links:
+    - openfire
+  ports:
+    "8084:80"
+  hostname: sparkweb
   domainname: comcloud-domain
