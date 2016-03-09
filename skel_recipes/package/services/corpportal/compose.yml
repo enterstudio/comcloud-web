@@ -1,0 +1,11 @@
+corpportal-web:
+  image: comcloud/corpportal
+  restart: always
+  container_name: corpportal-web
+  hostname: corpportal
+  command: grunt serve
+
+corpportal-db:
+  image: mongo
+  restart: always
+  container_name: corpportal-db

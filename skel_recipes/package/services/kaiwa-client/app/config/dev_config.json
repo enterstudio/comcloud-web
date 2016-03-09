@@ -1,0 +1,18 @@
+{
+    "isDev": true,
+    "http": {
+        "host": "FQDN_HERE",
+        "port": 8084
+    },
+    "session": {
+        "secret": "shhhhhh don't tell anyone ok?"
+    },
+    "server": {
+        "name": "HOST_HERE",
+        "domain": "DOMAIN_HERE",
+        "wss": "ws://FQDN_HERE:5280/xmpp-websocket/",
+        "muc": "",
+        "startup": "groupchat/home%40chat.DOMAIN_HERE",
+        "admin": "admin"
+    }
+}

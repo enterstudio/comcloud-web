@@ -1,0 +1,6 @@
+
+corpportal-db:
+  extends:
+    file: ./services/corpportal/compose.yml
+    service: corpportal-db
+

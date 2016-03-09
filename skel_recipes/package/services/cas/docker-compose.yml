@@ -1,0 +1,7 @@
+casserver:
+  extends:
+    file: ./compose.yml
+    service: cas
+  ports:
+    - "8080:8080"
+    - "8443:8443"
