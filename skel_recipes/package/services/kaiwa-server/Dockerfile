@@ -5,16 +5,16 @@ ENV HOME /root
 
 ENV XMPP_DOMAIN FQDN_HERE
 
-ENV DB_NAME docker 
-ENV DB_USER kaiwa
-ENV DB_PWD mypassword
+#ENV DB_NAME docker 
+#ENV DB_USER kaiwa
+#ENV DB_PWD mypassword
 
-ENV LDAP_HOST container
-ENV LDAP_DN ""
-ENV LDAP_PWD ""
-ENV LDAP_GROUP mygroup
-ENV LDAP_USER_BASE ou=users,dc=example.com
-ENV LDAP_GROUP_BASE ou=groups,dc=example.com
+#ENV LDAP_HOST container
+#ENV LDAP_DN ""
+#ENV LDAP_PWD ""
+#ENV LDAP_GROUP mygroup
+#ENV LDAP_USER_BASE ou=users,dc=example.com
+#ENV LDAP_GROUP_BASE ou=groups,dc=example.com
 
 ENV SSL_CRT ""
 ENV SSL_KEY ""
@@ -54,6 +54,8 @@ RUN chown -R prosody:prosody /etc/prosody /var/lib/prosody /var/log/prosody
 
 RUN mkdir -p /var/run/prosody
 RUN chown prosody.prosody /var/run/prosody
+
+#RUN prosodyctl register casuser comclouddh.wtelecom.es Mellon
 
 ADD app /app
 RUN chmod +x /app/start.sh

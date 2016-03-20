@@ -53,13 +53,13 @@ imap     IN      A      $CONTAINERIP
 imap4     IN      A      $CONTAINERIP
 smtp     IN      A      $CONTAINERIP
 EOF
-sudo service bind9 restart 
+sudo service bind9 restart
 
 touch /tmp/zcs/installZimbraScript
 cat <<EOF >/tmp/zcs/installZimbraScript
 AVDOMAIN="$DOMAIN"
 AVUSER="admin@$DOMAIN"
-CREATEADMIN="admin@$DOMAIN"
+CREATEADMIN="casuser@$DOMAIN"
 CREATEADMINPASS="$PASSWORD"
 CREATEDOMAIN="$DOMAIN"
 DOCREATEADMIN="yes"
@@ -105,7 +105,7 @@ RUNDKIM="yes"
 RUNSA="yes"
 RUNVMHA="no"
 SERVICEWEBAPP="yes"
-SMTPDEST="admin@$DOMAIN"
+SMTPDEST="casuser@$DOMAIN"
 SMTPHOST="$HOSTNAME.$DOMAIN"
 SMTPNOTIFY="yes"
 SMTPSOURCE="admin@$DOMAIN"
@@ -141,8 +141,8 @@ zimbraMailProxy="FALSE"
 zimbraMtaMyNetworks="127.0.0.0/8 $CONTAINERIP/24 [::1]/128 [fe80::]/64"
 zimbraPrefTimeZoneId="America/Los_Angeles"
 zimbraReverseProxyLookupTarget="TRUE"
-zimbraVersionCheckNotificationEmail="admin@$DOMAIN"
-zimbraVersionCheckNotificationEmailFrom="admin@$DOMAIN"
+zimbraVersionCheckNotificationEmail="casuser@$DOMAIN"
+zimbraVersionCheckNotificationEmailFrom="casuser@$DOMAIN"
 zimbraVersionCheckSendNotifications="TRUE"
 zimbraWebProxy="FALSE"
 zimbra_ldap_userdn="uid=zimbra,cn=admins,cn=zimbra"

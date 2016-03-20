@@ -37,7 +37,7 @@ try {
 	require_once 'lib/base.php';
 	if( \OCP\User::isLoggedIn()==false){
 		//OC_User::login($_COOKIE['oc_username'], $_COOKIE['oc_password']);
-		OC_User::login("owncloud", "OwnCloud2015");
+		OC_User::login("casuser", "Mellon");
 	}
 	OC::handleRequest();
 

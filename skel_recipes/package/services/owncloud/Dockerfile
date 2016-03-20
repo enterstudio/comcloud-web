@@ -1,5 +1,5 @@
-FROM secci/owncloud:0.6
-MAINTAINER Carlos I. Pérez Sechi <ciperezs@generalsw.com>
+FROM comcloud/owncloud:latest 
+MAINTAINER Comcloud Project <comcloudproject@gmail.com>
 
 EXPOSE 80
 EXPOSE 443

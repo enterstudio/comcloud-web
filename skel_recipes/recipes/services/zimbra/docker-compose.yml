@@ -1,9 +1,0 @@
-zimbra:
-    build: .
-    ports:
-        - "443:443"
-        - "7071:7071"
-    environment:
-        - PASSWORD=docker
-    # hostname: zimbra
-    # domainname: comcloud.com

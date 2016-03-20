@@ -1,9 +1,0 @@
-packetfence:
-  image: josefuentes/packetfence
-  container_name: packetfence
-  privileged: true
-  net: "host"
-  volumes:
-    - "/lib/modules/:/lib/modules/"
-  restart: always
-  command: /usr/bin/supervisord

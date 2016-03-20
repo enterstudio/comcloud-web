@@ -1,5 +1,6 @@
 corpportal-web:
   image: comcloud/corpportal
+  #build: .
   restart: always
   container_name: corpportal-web
   hostname: corpportal

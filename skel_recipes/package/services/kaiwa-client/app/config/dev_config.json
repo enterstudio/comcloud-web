@@ -12,7 +12,7 @@
         "domain": "DOMAIN_HERE",
         "wss": "ws://FQDN_HERE:5280/xmpp-websocket/",
         "muc": "",
-        "startup": "groupchat/home%40chat.DOMAIN_HERE",
+        "startup": "groupchat/home%40chat.FQDN_HERE",
         "admin": "admin"
     }
 }

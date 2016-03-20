@@ -1,0 +1,26 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+header#banner.hero-unit
+  .container
+    img(src='assets/images/logo.png', alt='ecorp', height='200px').logo
+
+.container(ng-show='loggedIn')
+  .row
+    .col-lg-12
+      h1.page-header Corporative applications:
+      ul.nav.nav-tabs.nav-stacked.col-md-3.col-lg-3.col-sm-6(ng-repeat='service in services')
+        li
+          a(href='{{service.link}}',align="center", tooltip='{{service.info}}')
+            img(src='assets/services/'+'{{service.codename}}'+'_logo.png', alt='{{service.name}}'+' logo', height="128px", max-width="256px")
+            br
+            | {{service.name}}
+
+
+.container(ng-hide='loggedIn')
+  .row
+    h1 You are not logged yet. Please, click login and introduce your credentials.
+
+footer.footer
+  .container
+    p
+      | ComCloud Corp-portal. v1

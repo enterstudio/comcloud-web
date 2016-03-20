@@ -1,9 +1,0 @@
-domains:
-  - organization.com
-  - organization.es
-external_ports:
-  - 80
-  - 5000
-internal_hosts:
-  - webmail:zimbra_front
-  - jabber:jabber_front

@@ -4,6 +4,6 @@ zimbra:
         - "443:443"
         - "7071:7071"
     environment:
-        - PASSWORD=docker
+        - PASSWORD=Mellon
     # hostname: zimbra
     # domainname: comcloud.com
