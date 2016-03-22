@@ -14,12 +14,12 @@ div.row
                 table.table
                     thead
                         tr
-                            th Nombre de la descarga
+                            th(colspan="2") Nombre de la descarga
                             th Progreso
                             th Enlace de descarga
                     tbody(ng-if="show")
                         tr
-                            td Instalador para {{ domain }}
+                            td(colspan="2") Instalador para {{ domain }}
                             td
                                 a.btn.btn-primary.btn-xs.download-btn(ng-click="generateLink()") Generar enlace
                                 div.progress.hide
@@ -27,6 +27,13 @@ div.row
                             td
                                 //a.download-link.hide(href="/files/comcloud.tar.bz2", target="_blank") Descargar
                                 a.download-link.hide(href="{{download_url}}", target="_blank") Descargar
+        div.panel.panel-default(ng-if="apps")
+            div.panel-heading Se Instalarán los siguientes servicios
+            div.panel-body
+                table.table
+                    tr
+                        td(ng-repeat="app in apps") {{app}}
+
         div.jumbotron
             div.jumbotron-photo
                 iframe(width="100%", height="500", src="https://www.youtube.com/embed/tBJPttvMdig", frameborder="0", allowfullscreen)

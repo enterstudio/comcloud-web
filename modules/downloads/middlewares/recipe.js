@@ -20,26 +20,26 @@ var mainSettings = rek('/settings'),
 function recipeWrapper() {
     return function recipeWrapper(req, res) {
         if (req.method == 'POST') {
-
             var author = req.body.author;
-            var path = "public/files/" + author;        
+            var path = "public/files/" + author;
             var requestToken = hat();
 
             cc_model.findOne({'author': author}, function(err, doc) {
+
                 if (err) {
                     return err;
-                } 
+                }
 
                 var dt = new dtree();
                 var apps = dt.deduce(doc.communication, doc.info);
                 var host = doc.domain.split('//')[1];
                 var recipe = new Recipe(path);
-                
-                fs.ensureDir(path, copyFiles(err, 'skel_recipes', path));
-                
-                recipe.compose(apps, host, requestToken, function(folder) {
-                    pack(folder, function(file) {
 
+                fs.ensureDir(path + "/recipe", copyFiles(err, 'skel_recipes', path + "/recipe"));
+                recipe.compose(apps, host, requestToken, function(folder) {
+                    console.log(folder);
+                    pack(folder, path, function(file) {
+                        console.log(file);
                         var form = new FormData();
                         form.append('recipes', fs.createReadStream(file));
                         form.append('requestToken', requestToken );
@@ -51,18 +51,21 @@ function recipeWrapper() {
                         }, function(err, result) {
                             if(err) { throw err; }
                             result.resume();
-                        });    
+                        });
                     });
                 });
-                  
+                res.json({
+                    response: "ok",
+                    object: apps
+                });
             });
         }
+
     };
-        
 }
 
-function pack(folder, cb) {
-    var recipeFile = folder + ".tar";
+function pack(folder, path, cb) {
+    var recipeFile = path + "/recipe.tar";
     var pack = require('tar-pack').pack;
     pack(folder)
         .pipe(fs.createWriteStream(recipeFile))
@@ -76,7 +79,6 @@ function pack(folder, cb) {
 
 var copyFiles = function copyFiles(err, skel, path) {
     if(err) { return console.log(err) }// => null
-    
     try {
         fs.copySync(skel, path);
     } catch (err) {

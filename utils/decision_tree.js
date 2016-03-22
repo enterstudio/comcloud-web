@@ -65,18 +65,11 @@ var decision_tree = function() {
     ];
 
     this.result = [
-        'zimbra','zimbra', 'zimbra', 'zimbra', 'zimbra', 'zimbra', 
-        'zimbra', 'zimbra', 'zimbra', 'zimbra', 
-        'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server',
-        'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 
-        'kaiwa-server', 'kaiwa-server', 'kaiwa-server',
-        'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client',
-        'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 
-        'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 
+        'zimbra','zimbra', 'zimbra', 'zimbra', 'zimbra', 'zimbra','zimbra', 'zimbra', 'zimbra', 'zimbra', 
+        'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server','kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server', 'kaiwa-server',
+        'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client','kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 'kaiwa-client', 
         'owncloud', 'owncloud', 'owncloud', 'owncloud', 'owncloud', 
-        'redmine', 'redmine', 
-        'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 
-        'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine' 
+        'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine', 'redmine' 
     ];
 
 }
@@ -108,11 +101,11 @@ function training(dt, fieldData, f) {
         var w = v.replace(/,$/,'');
         if (w.length > 3) {
             var classify = dt.classify([w,f]);
+
             var r = _.map(classify, function(value, key) {
                 return key;
             });
-
-            srvs.push(r[0]);
+            srvs = srvs.concat(r);
         }
     });
 

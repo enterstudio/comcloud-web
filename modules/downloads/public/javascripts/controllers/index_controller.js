@@ -32,6 +32,7 @@ angular.module('IntrepidJS').controller('DownloadsIndexController',
                     '/downloads/recipe',
                     function(data, status, headers, config) {
                         if (data.response == 'ok') {
+                            $scope.apps = data.object;
                             // $scope.token = data.requestToken;
                         }
                     }
@@ -53,7 +54,7 @@ angular.module('IntrepidJS').controller('DownloadsIndexController',
             $scope.$on('destroyInterval', function() {
                 $interval.cancel(interval);
                 angular.element(".download-link").removeClass('hide');
-                $scope.download_url = "/files/" + $scope.author + "/installer";
+                $scope.download_url = "/files/" + $scope.author + "/recipe/installer";
             });
 
             function getData() {

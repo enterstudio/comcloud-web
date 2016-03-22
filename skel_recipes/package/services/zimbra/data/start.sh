@@ -159,7 +159,11 @@ yes
 EOF
 
 /opt/zimbra/java/bin/keytool -import -file /tmp/casserver.cer -alias cascert -trustcacerts -keystore /opt/zimbra/java/jre/lib/security/cacerts -storepass changeit < /tmp/cert-keystrokes
-
+su - zimbra
+zmprov generateDomainPreAuthKey DOMAIN_HERE
+IFS=":" read FIELD KEY <<< $(zmprov gd DOMAIN_HERE zimbraPreAuthKey)
+sed -i "s/key/$KEY/g" share/preAuthKey.js
+exit
 if [[ $1 == "-d" ]]; then
   while true; do sleep 1000; done
 fi
