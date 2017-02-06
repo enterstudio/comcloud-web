@@ -111,7 +111,7 @@ cd $APP_DIR
 
 progress_bar 50 100
 
-wget http://comcloud-packager:5000/downloads/$TOKEN &> /dev/null
+wget http://comcloud.wtelecom.es:5000/downloads/$TOKEN &> /dev/null
 tar -xvf $TOKEN &>/dev/null
 
 progress_bar 70 100
